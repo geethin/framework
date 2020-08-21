@@ -1,4 +1,4 @@
-﻿using GT.Agreement.Entity;
+using GT.Agreement.Entity;
 using System;
 using System.ComponentModel.DataAnnotations;
 

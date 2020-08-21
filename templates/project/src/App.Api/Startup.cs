@@ -25,13 +25,13 @@ namespace App.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // 当使用GT.CLI生成仓储服务后，请取消下行注释
+            // 
             // services.AddRepositories();
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddHttpContextAccessor();
 
-            #region 添加接口jwt授权、swagger、cors等服务
-            // 添加验证
+            #region 鎺ュ彛鐩稿叧鍐呭:jwt/swagger/鎺堟潈/cors
+            // jwt
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -43,7 +43,6 @@ namespace App.Api
                 cfg.SaveToken = true;
                 cfg.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    // 配置 jwt 验证，或使用identityServer
                     //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt")["Sign"])),
                     //ValidIssuer = Configuration.GetSection("Jwt")["Issuer"],
                     //ValidAudience = Configuration.GetSection("Jwt")["Audience"],
@@ -54,14 +53,14 @@ namespace App.Api
                     //ValidateIssuerSigningKey = true
                 };
             });
-            // 添加授权
+            // 楠岃瘉
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Name));
             });
 
             // services.AddScoped(typeof(JwtService)); 
-           // cors配置
+           // cors閰嶇疆 
             services.AddCors(options =>
             {
                 options.AddPolicy("default", builder =>
@@ -71,14 +70,14 @@ namespace App.Api
                     builder.AllowAnyHeader();
                 });
             });
-            // swagger 配置
+            // swagger 璁剧疆
             services.AddOpenApiDocument(doc =>
             {
                 doc.PostProcess = post =>
                 {
                     post.Info.Version = "v1";
-                    post.Info.Title = "网站接口";
-                    post.Info.Description = "网站接口";
+                    post.Info.Title = "Web Api";
+                    post.Info.Description = "Api 鎺ュ彛鍒楄〃";
                     post.Info.Contact = new NSwag.OpenApiContact
                     {
                         Name = "Niltor",
@@ -86,8 +85,7 @@ namespace App.Api
                         Url = "https://github.com/geethin/"
                     };
                 };
-                doc.DocumentName = "web";
-                doc.ApiGroupNames = new[] { "Web" };
+                doc.DocumentName = "app";
             });
             #endregion
 
