@@ -1,6 +1,5 @@
 ﻿using GT.Agreement.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace GT.Agreement.AppService

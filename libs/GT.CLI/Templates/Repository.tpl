@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿// 该文件由GT.CLI 工具自动生成
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using GT.Agreement;
 using GT.Agreement.Entity;

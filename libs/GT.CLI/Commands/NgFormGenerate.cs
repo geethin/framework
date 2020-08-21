@@ -1,14 +1,5 @@
-﻿using SharpYaml.Tokens;
-using System;
+﻿using GT.CLI.Common;
 using System.Collections.Generic;
-using System.Text;
-using GT.Agreement.Utils;
-using Microsoft.CodeAnalysis.CSharp;
-using GT.CLI.Common;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using System.IO;
 using static GT.CLI.Common.TypeHelper;
 
 namespace GT.CLI.Commands

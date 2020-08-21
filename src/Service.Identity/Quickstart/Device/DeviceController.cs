@@ -2,10 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using IdentityServer4.Configuration;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -16,6 +12,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IdentityServerHost.Quickstart.UI
 {
@@ -45,10 +45,16 @@ namespace IdentityServerHost.Quickstart.UI
         {
             string userCodeParamName = _options.Value.UserInteraction.DeviceVerificationUserCodeParameter;
             string userCode = Request.Query[userCodeParamName];
-            if (string.IsNullOrWhiteSpace(userCode)) return View("UserCodeCapture");
+            if (string.IsNullOrWhiteSpace(userCode))
+            {
+                return View("UserCodeCapture");
+            }
 
             var vm = await BuildViewModelAsync(userCode);
-            if (vm == null) return View("Error");
+            if (vm == null)
+            {
+                return View("Error");
+            }
 
             vm.ConfirmUserCode = true;
             return View("UserCodeConfirmation", vm);
@@ -59,7 +65,10 @@ namespace IdentityServerHost.Quickstart.UI
         public async Task<IActionResult> UserCodeCapture(string userCode)
         {
             var vm = await BuildViewModelAsync(userCode);
-            if (vm == null) return View("Error");
+            if (vm == null)
+            {
+                return View("Error");
+            }
 
             return View("UserCodeConfirmation", vm);
         }
@@ -68,10 +77,16 @@ namespace IdentityServerHost.Quickstart.UI
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Callback(DeviceAuthorizationInputModel model)
         {
-            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
 
             var result = await ProcessConsent(model);
-            if (result.HasValidationError) return View("Error");
+            if (result.HasValidationError)
+            {
+                return View("Error");
+            }
 
             return View("Success");
         }
@@ -81,7 +96,10 @@ namespace IdentityServerHost.Quickstart.UI
             var result = new ProcessConsentResult();
 
             var request = await _interaction.GetAuthorizationContextAsync(model.UserCode);
-            if (request == null) return result;
+            if (request == null)
+            {
+                return result;
+            }
 
             ConsentResponse grantedConsent = null;
 

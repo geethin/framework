@@ -1,10 +1,8 @@
-﻿using GT.CLI.Common;
-using GT.Agreement.Utils;
+﻿using GT.Agreement.Utils;
+using GT.CLI.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Linq;
 
 namespace GT.CLI.Commands
@@ -27,8 +25,16 @@ namespace GT.CLI.Commands
 
         public void Build(bool hasLayout = true, bool hasModule = true)
         {
-            if (hasModule) BuildModule();
-            if (hasLayout) BuildLayout();
+            if (hasModule)
+            {
+                BuildModule();
+            }
+
+            if (hasLayout)
+            {
+                BuildLayout();
+            }
+
             BuildAddPage();
             BuildEditPage();
             BuildIndexPage();
@@ -56,9 +62,21 @@ namespace GT.CLI.Commands
                 definedProperties += $@"    get {name}() {{ return this.formGroup.get('{name}'); }}
 ";
                 var validators = new List<string>();
-                if (property.IsRequired) validators.Add("Validators.required");
-                if (property.MinLength != null) validators.Add($"Validators.minLength({property.MinLength})");
-                if (property.MaxLength != null) validators.Add($"Validators.maxLength({property.MaxLength})");
+                if (property.IsRequired)
+                {
+                    validators.Add("Validators.required");
+                }
+
+                if (property.MinLength != null)
+                {
+                    validators.Add($"Validators.minLength({property.MinLength})");
+                }
+
+                if (property.MaxLength != null)
+                {
+                    validators.Add($"Validators.maxLength({property.MaxLength})");
+                }
+
                 definedFormControls += $@"      {name}: new FormControl(null, [{string.Join(",", validators)}]),
 ";
 
@@ -102,9 +120,21 @@ namespace GT.CLI.Commands
                 definedProperties += $@"    get {name}() {{ return this.formGroup.get('{name}'); }}
 ";
                 var validators = new List<string>();
-                if (property.IsRequired) validators.Add("Validators.required");
-                if (property.MinLength != null) validators.Add($"Validators.minLength({property.MinLength})");
-                if (property.MaxLength != null) validators.Add($"Validators.maxLength({property.MaxLength})");
+                if (property.IsRequired)
+                {
+                    validators.Add("Validators.required");
+                }
+
+                if (property.MinLength != null)
+                {
+                    validators.Add($"Validators.minLength({property.MinLength})");
+                }
+
+                if (property.MaxLength != null)
+                {
+                    validators.Add($"Validators.maxLength({property.MaxLength})");
+                }
+
                 definedFormControls += $@"      {name}: new FormControl(this.data.{name}, [{string.Join(",", validators)}]),
 ";
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using App.Api;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace App.Api.Controllers
@@ -18,6 +13,6 @@ namespace App.Api.Controllers
         {
             _logger = logger;
         }
-        
+
     }
 }

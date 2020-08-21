@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
+using Services.AutoMapper;
 namespace App.Api
 {
     public class Startup
@@ -22,10 +16,23 @@ namespace App.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // 当使用GT.CLI生成仓储服务后，请取消下行注释
+            // services.AddRepositories();
+
+            // automapper服务
+            services.AddAutoMapper(typeof(MapperProfile));
+            services.AddHttpContextAccessor();
+
+
             services.AddControllers();
+            //services.AddControllers()
+            //    .AddNewtonsoftJson(options =>
+            //    {
+            //        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //    }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

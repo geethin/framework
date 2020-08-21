@@ -1,13 +1,10 @@
-﻿using GT.Agreement;
-using GT.Agreement.Entity;
+﻿using GT.Agreement.Entity;
 using GT.Agreement.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GT.Agreement.AppService

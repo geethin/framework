@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace GT.CLI.Common
 {
@@ -39,7 +38,10 @@ namespace GT.CLI.Common
         public List<PropertyInfo> GetPropertyInfos(string filePath)
         {
             var properties = new List<PropertyInfo>();
-            if (!File.Exists(filePath)) return properties;
+            if (!File.Exists(filePath))
+            {
+                return properties;
+            }
 
             var content = File.ReadAllText(filePath);
             var tree = CSharpSyntaxTree.ParseText(content);

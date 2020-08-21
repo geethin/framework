@@ -1,5 +1,4 @@
 ﻿using GT.Agreement.Models;
-using System;
 using System.Threading.Tasks;
 
 namespace GT.Agreement.AppService
