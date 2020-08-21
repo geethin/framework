@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NilTor",
+  "classifications": [
+    "WebAPI",
+    "Framework"
+  ],
+  "name": "GTWeb",
+  "identity": "geethin.framework",
+  "shortName": "gtweb",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "project",
+  "preferNameDirectory": true
+}

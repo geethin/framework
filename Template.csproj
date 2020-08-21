@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>0.1.1</PackageVersion>
+    <PackageId>GT.Framework.Web</PackageId>
+    <Title>GT Web开发框架模板</Title>
+    <Authors>GT.Niltor</Authors>
+    <Description>基于Asp.net core 与 angular的项目模板</Description>
+    <PackageTags>templates;web;angular;asp.net core</PackageTags>
+    <TargetFramework>netstandard2.1</TargetFramework>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+
+    <Copyright>Geethin</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/geethin</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/geethin/framework</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageIcon>logo.jpg</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+    <Compile Remove="**\*" />
+    <None Include="logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
