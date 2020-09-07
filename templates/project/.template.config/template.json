@@ -12,6 +12,6 @@
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "project",
+  "sourceName": "MyProjectName",
   "preferNameDirectory": true
 }
