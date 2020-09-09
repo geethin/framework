@@ -1,5 +1,5 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the demo root for license information.
 
 
 using IdentityServer4.Models;
@@ -10,17 +10,17 @@ namespace Service.Identity
     public static class Config
     {
         public static IEnumerable<IdentityResource> IdentityResources =>
-                   new IdentityResource[]
-                   {
+            new IdentityResource[]
+            {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                   };
+            };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
                 new ApiScope("scope1"),
-                new ApiScope("scope2"),
+                new ApiScope("webapp"),
             };
 
         public static IEnumerable<Client> Clients =>
@@ -29,7 +29,7 @@ namespace Service.Identity
                 // m2m client credentials flow client
                 new Client
                 {
-                    ClientId = "m2m.client",
+                    ClientId = "m2m",
                     ClientName = "Client Credentials Client",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
@@ -41,17 +41,19 @@ namespace Service.Identity
                 // interactive client using code flow + pkce
                 new Client
                 {
-                    ClientId = "interactive",
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
-
+                    ClientId = "webapp",
+                    ClientName = "Ng Web Client",
                     AllowedGrantTypes = GrantTypes.Code,
+                    RequireClientSecret = false,
+                    //ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
+                    RedirectUris = { "http://localhost:4200/index.html" },
+                    FrontChannelLogoutUri = "http://localhost:4200/signout-oidc",
+                    PostLogoutRedirectUris = { "http://localhost:4200/signout-callback-oidc" },
+                    AllowedCorsOrigins =     { "http://localhost:4200","https://localhost:4200" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope2" }
+                    AllowedScopes = { "openid", "profile", "webapp", "offline_access" }
                 },
             };
     }

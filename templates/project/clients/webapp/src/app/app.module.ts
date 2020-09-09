@@ -5,8 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShareModule } from './share/share.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HomeModule } from './home/home.module';
 
-const appModules = [] as [];
+const appModules = [
+  HomeModule
+];
 
 @NgModule({
   declarations: [
@@ -17,6 +21,12 @@ const appModules = [] as [];
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['https://localhost:5001'],
+        sendAccessToken: true
+      }
+    }),
     ShareModule,
     ...appModules
   ],
