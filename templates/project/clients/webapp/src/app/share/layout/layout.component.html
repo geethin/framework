@@ -21,6 +21,6 @@
     </mat-menu>
   </span>
   <span *ngIf="!isLogin">
-    <a mat-button [routerLink]="['/login']">登录</a>
+    <a mat-button (click)="login()">登录</a>
   </span>
 </mat-toolbar>

@@ -24,7 +24,7 @@ export class AuthService {
     }
   }
   // 登出
-  logout() {
+  logout(): void {
     localStorage.clear();
     this.updateUserLoginState();
   }

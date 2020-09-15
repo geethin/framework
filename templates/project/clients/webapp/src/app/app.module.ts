@@ -23,7 +23,7 @@ const appModules = [
     HttpClientModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['https://localhost:5001'],
+        allowedUrls: ['https://localhost:5002'],
         sendAccessToken: true
       }
     }),

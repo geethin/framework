@@ -1,5 +1,5 @@
 // Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the demo root for license information.
 
 
 using IdentityModel;
@@ -202,6 +202,7 @@ namespace IdentityServerHost.Quickstart.UI
         {
             // build a model so the logged out page knows what to display
             var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
+
 
             if (User?.Identity.IsAuthenticated == true)
             {

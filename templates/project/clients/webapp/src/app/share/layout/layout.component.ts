@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-layout',
@@ -11,18 +11,24 @@ export class LayoutComponent implements OnInit {
   isLogin = false;
   username = '';
   constructor(
-    private service: AuthService,
+    private service: OAuthService,
+    private oauthService: OAuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.isLogin = this.service.isLogin;
-    this.username = localStorage.getItem('username')!;
+    this.isLogin = this.service.hasValidAccessToken();
+    const claims = this.oauthService.getIdentityClaims() as Record<string, string>;
+    this.username = claims?.name ?? '';
   }
 
-  logout() {
-    this.service.logout();
-    this.router.navigateByUrl('/login');
+  login(): void {
+    this.oauthService.initCodeFlow();
+  }
+
+  logout(): void {
+    this.oauthService.logOut();
+    this.router.navigateByUrl('/index');
   }
 
 }
