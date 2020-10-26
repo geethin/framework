@@ -1,5 +1,6 @@
 using AutoMapper;
 using Core.Services;
+using Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Services.AutoMapper;
 using System.Security.Claims;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace App.Api
 {
@@ -29,6 +30,12 @@ namespace App.Api
             // services.AddRepositories();
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddHttpContextAccessor();
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContextPool<ContextBase>(option =>
+                {
+                    option.UseSqlServer(connectionString, sql => { sql.MigrationsAssembly("Data.Context"); });
+                });
 
             #region 接口相关内容:jwt/swagger/授权/cors
             // jwt
@@ -90,9 +97,9 @@ namespace App.Api
             #endregion
 
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
+                .AddJsonOptions(options =>
                 {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                 });
 
 
