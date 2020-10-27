@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
   ) {
 
     this.oauthService.configure(authCodeFlowConfig);
-    this.oauthService.setupAutomaticSilentRefresh();
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    // this.oauthService.setupAutomaticSilentRefresh();
+    // this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
   ngOnInit(): void {
   }

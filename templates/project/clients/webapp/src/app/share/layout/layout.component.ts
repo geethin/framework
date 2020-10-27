@@ -17,17 +17,17 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLogin = this.service.hasValidAccessToken();
-    const claims = this.oauthService.getIdentityClaims() as Record<string, string>;
-    this.username = claims?.name ?? '';
+    // this.isLogin = this.service.hasValidAccessToken();
+    // const claims = this.oauthService.getIdentityClaims() as Record<string, string>;
+    // this.username = claims?.name ?? '';
   }
 
   login(): void {
-    this.oauthService.initCodeFlow();
+    // this.oauthService.initCodeFlow();
   }
 
   logout(): void {
-    this.oauthService.logOut();
+    // this.oauthService.logOut();
     this.router.navigateByUrl('/index');
   }
 
