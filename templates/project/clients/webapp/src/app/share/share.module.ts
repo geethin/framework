@@ -37,6 +37,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { EnumPipe } from './enum.pipe';
 
 const MaterialModules = [
   MatToolbarModule,
@@ -74,7 +75,7 @@ const MaterialModules = [
 ];
 
 @NgModule({
-  declarations: [LayoutComponent, ConfirmDialogComponent],
+  declarations: [LayoutComponent, ConfirmDialogComponent, EnumPipe],
   imports: [
     CommonModule,
     RouterModule,
@@ -90,7 +91,8 @@ const MaterialModules = [
     FormsModule,
     FlexLayoutModule,
     LayoutComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    EnumPipe
   ]
 })
 export class ShareModule { }
