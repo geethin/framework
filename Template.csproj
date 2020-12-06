@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.3.0</PackageVersion>
+    <PackageVersion>0.3.5</PackageVersion>
     <PackageId>GT.Framework.Web</PackageId>
     <Title>GT Web开发框架模板</Title>
     <Authors>GT.Niltor</Authors>
@@ -13,6 +13,7 @@
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
 
     <Copyright>Geethin</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

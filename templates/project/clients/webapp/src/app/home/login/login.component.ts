@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OAuthService, OAuthErrorEvent, UserInfo } from 'angular-oauth2-oidc';
+// import { OAuthService, OAuthErrorEvent, UserInfo } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup; constructor(
-    private oauthService: OAuthService,
+    // private oauthService: OAuthService,
     private router: Router
 
   ) {
