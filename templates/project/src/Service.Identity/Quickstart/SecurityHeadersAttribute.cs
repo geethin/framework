@@ -4,7 +4,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Serilog;
 
 namespace IdentityServerHost.Quickstart.UI
 {

@@ -1,16 +1,17 @@
+using System.Security.Claims;
+using System.Text;
 using AutoMapper;
-using Core.Services;
 using Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Services.AutoMapper;
-using System.Security.Claims;
-using System.Text.Json.Serialization;
 
 namespace App.Api
 {
@@ -50,13 +51,14 @@ namespace App.Api
                 cfg.SaveToken = true;
                 cfg.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt")["Sign"])),
-                    //ValidIssuer = Configuration.GetSection("Jwt")["Issuer"],
-                    //ValidAudience = Configuration.GetSection("Jwt")["Audience"],
-                    ValidateAudience = false,
-                    //ValidateIssuer = true,
+                    // 如果不如果jwt，可注释掉，你可能会使用IdentityServer
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt")["Sign"])),
+                    ValidIssuer = Configuration.GetSection("Jwt")["Issuer"],
+                    ValidAudience = Configuration.GetSection("Jwt")["Audience"],
+                    ValidateIssuer = true,
                     ValidateLifetime = false,
                     RequireExpirationTime = false,
+                    ValidateAudience = false,
                     //ValidateIssuerSigningKey = true
                 };
             });
@@ -67,7 +69,7 @@ namespace App.Api
             });
 
             // services.AddScoped(typeof(JwtService)); 
-           // cors配置 
+            // cors配置 
             services.AddCors(options =>
             {
                 options.AddPolicy("default", builder =>
@@ -97,12 +99,11 @@ namespace App.Api
             #endregion
 
             services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                });
-
-
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Include;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -116,6 +117,8 @@ namespace App.Api
             }
             else
             {
+                // 生产环境需要新的配置
+                app.UseCors("default");
                 app.UseExceptionHandler("/Home/Error");
                 //app.UseHsts();
                 app.UseHttpsRedirection();

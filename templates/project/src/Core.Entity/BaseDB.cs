@@ -1,6 +1,6 @@
-using GT.Agreement.Entity;
 using System;
 using System.ComponentModel.DataAnnotations;
+using GT.Agreement.Entity;
 
 namespace Core.Entity
 {

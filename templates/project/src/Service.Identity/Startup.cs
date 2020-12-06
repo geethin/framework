@@ -3,7 +3,6 @@
 
 
 using System.Reflection;
-using IdentityServer4;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
