@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.3.5</PackageVersion>
+    <PackageVersion>0.3.6</PackageVersion>
     <PackageId>GT.Framework.Web</PackageId>
     <Title>GT Web开发框架模板</Title>
     <Authors>GT.Niltor</Authors>
