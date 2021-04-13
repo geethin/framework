@@ -1,14 +1,42 @@
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.ComponentModel.DataAnnotations;
-using GT.Agreement.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entity
 {
-    // 定义你的实体模型基本字段
-    public class BaseDB : EntityBase<Guid>
+    /// <summary>
+    /// 数据加基础字段模型
+    /// </summary>
+    public class BaseDB
     {
         [Key]
-        public override Guid Id { get; set; } = Guid.NewGuid();
-        public override DateTimeOffset CreatedTime { get; set; } = DateTimeOffset.UtcNow;
+        [Column(TypeName = "char(36)")]
+        public Guid Id { get; set; } = Guid.NewGuid();
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public virtual Status Status { get; set; } = Status.Default;
+        [Column(TypeName = "datetime")]
+        public DateTimeOffset CreatedTime { get; set; } = DateTimeOffset.UtcNow;
+        [Column(TypeName = "datetime")]
+        public DateTimeOffset UpdatedTime { get; set; } = DateTimeOffset.UtcNow;
+    }
+
+    public enum Status
+    {
+        /// <summary>
+        /// 默认值 
+        /// </summary>
+        Default,
+        /// <summary>
+        /// 已删除
+        /// </summary>
+        Deleted,
+        /// <summary>
+        /// 无效
+        /// </summary>
+        Invalid,
+        Valid
     }
 }
