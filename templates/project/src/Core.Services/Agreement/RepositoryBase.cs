@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Share.Models;
 using Microsoft.EntityFrameworkCore;
+using Share.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
