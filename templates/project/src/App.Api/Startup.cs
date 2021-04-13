@@ -1,15 +1,19 @@
+using System.IO;
 using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using Data.Context;
+using IGeekFan.AspNetCore.Knife4jUI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Services.AutoMapper;
 
@@ -31,6 +35,7 @@ namespace App.Api
             // services.AddRepositories();
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddHttpContextAccessor();
+            services.AddOptions();
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<ContextBase>(option =>
@@ -38,7 +43,7 @@ namespace App.Api
                     option.UseSqlServer(connectionString, sql => { sql.MigrationsAssembly("Data.Context"); });
                 });
 
-            #region 接口相关内容:jwt/swagger/授权/cors
+            #region 接口相关内容:jwt/授权/cors
             // jwt
             services.AddAuthentication(options =>
             {
@@ -79,24 +84,36 @@ namespace App.Api
                     builder.AllowAnyHeader();
                 });
             });
-            // swagger 设置
-            services.AddOpenApiDocument(doc =>
-            {
-                doc.PostProcess = post =>
-                {
-                    post.Info.Version = "v1";
-                    post.Info.Title = "Web Api";
-                    post.Info.Description = "Api 接口列表";
-                    post.Info.Contact = new NSwag.OpenApiContact
-                    {
-                        Name = "Niltor",
-                        Email = string.Empty,
-                        Url = "https://github.com/geethin/"
-                    };
-                };
-                doc.DocumentName = "app";
-            });
             #endregion
+
+            // api 接口文档设置
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "API 文档",
+                    Version = "v1",
+                    Description = "Description",
+                    Contact = new OpenApiContact
+                    {
+                        Email = "YourEmail",
+                        Name = "Name",
+                    }
+                });
+                c.AddServer(new OpenApiServer()
+                {
+                    Url = "",
+                    Description = "Description"
+                });
+                c.CustomOperationIds(apiDesc =>
+                {
+                    var controllerAction = apiDesc.ActionDescriptor as ControllerActionDescriptor;
+                    return controllerAction.ControllerName + "-" + controllerAction.ActionName;
+                });
+
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "App.Api.xml");
+                c.IncludeXmlComments(filePath, true);
+            });
 
             services.AddControllers()
             .AddNewtonsoftJson(options =>
@@ -112,8 +129,13 @@ namespace App.Api
             {
                 app.UseCors("default");
                 app.UseDeveloperExceptionPage();
-                app.UseOpenApi();
-                app.UseSwaggerUi3();
+                app.UseSwagger();
+
+                app.UseKnife4UI(c =>
+                {
+                    c.RoutePrefix = "api/docs"; // serve the UI at root
+                    c.SwaggerEndpoint("/v1/api-docs", "V1 Docs");
+                });
             }
             else
             {
@@ -125,13 +147,13 @@ namespace App.Api
             }
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapSwagger("{documentName}/api-docs");
             });
         }
     }
