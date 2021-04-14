@@ -20,7 +20,7 @@
     "Host.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "api/docs",
       "applicationUrl": "http://localhost:5002;https://localhost:15002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

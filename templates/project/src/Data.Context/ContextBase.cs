@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
 {
     public class ContextBase : DbContext
     {
+        public DbSet<Blog> Blogs { get; set; }
 
         public ContextBase(DbContextOptions<ContextBase> options) : base(options)
         {

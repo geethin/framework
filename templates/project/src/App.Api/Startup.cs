@@ -32,7 +32,8 @@ namespace App.Api
         {
 
             // 使用cli工具生成仓储，请取消以下注释
-            // services.AddRepositories();
+            services.AddRepositories();
+
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddHttpContextAccessor();
             services.AddOptions();
