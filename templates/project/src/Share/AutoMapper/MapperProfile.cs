@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Services.AutoMapper
+namespace Share.AutoMapper
 {
     public class MapperProfile : Profile
     {
@@ -8,7 +8,7 @@ namespace Services.AutoMapper
         {
             // 定义你的模型转换
             // 如果使用cli工具，则取消以下注释
-            // AutoGenerateProfile.Init();
+            AutoGenerateProfile.Init();
         }
     }
 }

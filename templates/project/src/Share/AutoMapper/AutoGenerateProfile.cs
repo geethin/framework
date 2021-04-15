@@ -4,7 +4,7 @@ using AutoMapper;
 using Core.Entity;
 using Share.Models;
 
-namespace Core.Services.AutoMapper
+namespace Share.AutoMapper
 {
     /// <summary>
     /// GT.CLI 生成的AutoMapper配置
@@ -12,7 +12,7 @@ namespace Core.Services.AutoMapper
     public class GenerateProfile : Profile
     {
         public GenerateProfile()
-        {
+        { 
             // {AppendMappers}
         }
     }

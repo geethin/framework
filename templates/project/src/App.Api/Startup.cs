@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using Services.AutoMapper;
+using Share.AutoMapper;
 
 namespace App.Api
 {
