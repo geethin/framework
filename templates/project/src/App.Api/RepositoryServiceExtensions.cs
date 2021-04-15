@@ -12,8 +12,6 @@ namespace App.Api
     {
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped(typeof(BlogRepository));
-
         }
     }
 }

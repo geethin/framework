@@ -1,5 +1,4 @@
 ﻿// 该文件由GT.CLI工具生成，请不要删除模板占位符。
-// Blog;
 // {AlreadyMapedEntity}
 using AutoMapper;
 using Core.Entity;
@@ -14,12 +13,7 @@ namespace Core.Services.AutoMapper
     {
         public GenerateProfile()
         {
-     
-            CreateMap<BlogAddDto, Blog>();
-            CreateMap<BlogUpdateDto, Blog>();
-            CreateMap<Blog, BlogDto>();
-            CreateMap<Blog, BlogDetailDto>();        
-// {AppendMappers}
+            // {AppendMappers}
         }
     }
 
