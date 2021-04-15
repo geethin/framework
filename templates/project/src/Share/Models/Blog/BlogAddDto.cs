@@ -15,7 +15,7 @@ namespace Share.Models
         /// 状态
         /// </summary>
         public Status Status { get; set; }
-        [Column(TypeName = "datetime")]
+        //[Column(TypeName = "datetime")]
         public DateTimeOffset UpdatedTime { get; set; }
     
     }

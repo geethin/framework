@@ -12,15 +12,14 @@ namespace Share.Models
         public string Content { get; set; }
         public string Description { get; set; }
         [Key]
-[Column(TypeName = "char(36)")]
         public Guid Id { get; set; }
         /// <summary>
         /// 状态
         /// </summary>
         public Status Status { get; set; }
-        [Column(TypeName = "datetime")]
+        //[Column(TypeName = "datetime")]
         public DateTimeOffset CreatedTime { get; set; }
-        [Column(TypeName = "datetime")]
+        //[Column(TypeName = "datetime")]
         public DateTimeOffset UpdatedTime { get; set; }
     
     }
