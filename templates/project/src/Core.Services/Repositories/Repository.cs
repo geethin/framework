@@ -1,14 +1,14 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Core.Agreement;
-using Share.Models;
+using Core.Entity;
+using Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Data.Context;
-using Core.Entity;
 
 namespace Core.Services.Repositories
 {

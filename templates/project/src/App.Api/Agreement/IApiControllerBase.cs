@@ -1,5 +1,5 @@
-﻿using Share.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Share.Models;
 using System.Threading.Tasks;
 
 namespace App.Agreement

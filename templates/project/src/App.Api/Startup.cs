@@ -1,7 +1,3 @@
-using System.IO;
-using System.Security.Claims;
-using System.Text;
-using AutoMapper;
 using Data.Context;
 using IGeekFan.AspNetCore.Knife4jUI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,6 +12,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Share.AutoMapper;
+using System.IO;
+using System.Security.Claims;
+using System.Text;
 
 namespace App.Api
 {

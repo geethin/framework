@@ -1,5 +1,4 @@
-﻿using Core.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
 {

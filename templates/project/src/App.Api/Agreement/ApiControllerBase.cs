@@ -1,12 +1,12 @@
-﻿using Share.Models;
+﻿using Core.Agreement;
+using Core.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Share.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Entity;
-using Core.Agreement;
 
 namespace App.Agreement
 {

@@ -1,8 +1,6 @@
 ﻿// 该文件由GT.CLI工具生成，请不要删除模板占位符。
 // {AlreadyMapedEntity}
 using AutoMapper;
-using Core.Entity;
-using Share.Models;
 
 namespace Share.AutoMapper
 {
@@ -12,7 +10,7 @@ namespace Share.AutoMapper
     public class GenerateProfile : Profile
     {
         public GenerateProfile()
-        { 
+        {
             // {AppendMappers}
         }
     }
