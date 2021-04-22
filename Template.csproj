@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.0-beta</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <PackageId>GT.Framework.Web</PackageId>
     <OutputPath>nupkg</OutputPath>
     <Title>GT Web开发框架模板</Title>
