@@ -130,7 +130,6 @@ namespace App.Api
                 app.UseCors("default");
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-
                 app.UseKnife4UI(c =>
                 {
                     c.RoutePrefix = "api/docs"; // serve the UI at root
@@ -145,6 +144,7 @@ namespace App.Api
                 //app.UseHsts();
                 app.UseHttpsRedirection();
             }
+            app.UseCustomExceptionMiddleware();
 
             app.UseRouting();
             app.UseAuthentication();

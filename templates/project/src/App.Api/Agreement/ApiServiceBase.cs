@@ -12,5 +12,9 @@ namespace App.Agreement
         {
         }
 
+        public override ObjectResult Problem(string detail = null, string instance = null, int? statusCode = null, string title = null, string type = null)
+        {
+            return base.Problem(detail, instance, 500, title ?? "业务逻辑错误", "error");
+        }
     }
 }
