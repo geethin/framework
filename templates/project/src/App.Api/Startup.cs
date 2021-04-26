@@ -1,3 +1,4 @@
+using Core.Services;
 using Data.Context;
 using IGeekFan.AspNetCore.Knife4jUI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -30,6 +31,7 @@ namespace App.Api
 
             // 使用cli工具生成仓储，请取消以下注释
             services.AddRepositories();
+            services.AddScoped(typeof(WebService));
 
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddHttpContextAccessor();
@@ -111,7 +113,7 @@ namespace App.Api
                      {
                          settings.PostProcess = (document, request) =>
                          {
-                             document.Info.Title = Configuration["Project:Name"];
+                             document.Info.Title = "My Project";
                          };
                      });
 
