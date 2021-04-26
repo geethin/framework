@@ -43,13 +43,12 @@ namespace App.Api.Controllers
                  .FirstOrDefault();
             if (user == null)
             {
-                return NotFound("邮箱不存在或密码错误");
+                return NotFound("用户名或密码错误");
             }
-            if (HashCrypto.Validate(dto.Password, user.HashSalt, user.Password))
+            if (!HashCrypto.Validate(dto.Password, user.HashSalt, user.Password))
             {
-                user = _mapper.Map<AccountDetailDto>(user);
+                return Problem("用户名或密码错误");
             }
-
             var jwt = new JwtService();
             var issuerSign = _config.GetSection("Jwt")["Sign"];
             var issuer = _config.GetSection("Jwt")["Issuer"];

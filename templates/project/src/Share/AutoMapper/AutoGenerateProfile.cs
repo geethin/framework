@@ -1,5 +1,7 @@
 ﻿// 该文件由GT.CLI工具生成，请不要删除模板占位符。
 // {AlreadyMapedEntity}
+using Core.Entity;
+using Share.Models;
 using AutoMapper;
 
 namespace Share.AutoMapper
