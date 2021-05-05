@@ -2,7 +2,9 @@
 // {AlreadyMapedEntity}
 using Core.Entity;
 using Share.Models;
+using Share.Models.Common;
 using AutoMapper;
+using System;
 
 namespace Share.AutoMapper
 {
@@ -14,6 +16,17 @@ namespace Share.AutoMapper
         public GenerateProfile()
         {
             // {AppendMappers}
+
+            bool NotNull(object src)
+            {
+                return src switch
+                {
+                    null => false,
+                    int @int when @int == 0 => false,
+                    Guid guid when guid == Guid.Empty => false,
+                    _ => true
+                };
+            }
         }
     }
 
